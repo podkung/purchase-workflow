@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="report_purchasequotation_document"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <xpath expr="//span[@t-field='o.name']" position="attributes">
+            <attribute name="inherit">1</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='o.name']" position="after">
+            <span t-field="o.rfq_number" />
+        </xpath>
+    </template>
+
+</odoo>
