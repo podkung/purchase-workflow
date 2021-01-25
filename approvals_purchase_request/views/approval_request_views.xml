@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="approval_purchase_request_view_form_inherit" model="ir.ui.view">
+        <field name="name">approval.purchase.request.view.form.inherit</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_get_attachment_view']" position="after">
+                <button
+                    name="action_open_purchase_requests"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    attrs="{'invisible': [('purchase_request_count', '=', 0)]}"
+                >
+                    <field
+                        name="purchase_request_count"
+                        string="Purchase Requests"
+                        widget="statinfo"
+                    />
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button
+                    name="action_create_purchase_request"
+                    type="object"
+                    groups="purchase_request.group_purchase_request_user"
+                    string="Create PR's"
+                    class="btn-primary"
+                    attrs="{'invisible': [
+                        '|', '|',
+                            ('approval_type', '!=', 'purchase_request'),
+                            ('request_status', '!=', 'approved'),
+                            ('purchase_request_count', '&gt;', 0)
+                    ]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
