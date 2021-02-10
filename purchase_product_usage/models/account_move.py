@@ -17,6 +17,7 @@ class AccountMoveLine(models.Model):
         "account_id",
         "analytic_account_id",
         "analytic_tag_ids",
+        "move_id",
     )
     def _onchange_mark_recompute_taxes(self):
         for line in self:
