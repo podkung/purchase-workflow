@@ -27,15 +27,6 @@ class PurchaseRequest(models.Model):
         domain="[('company_id', 'in', [False, company_id])]",
         default=lambda self: self._default_request_type(),
     )
-    reduce_step = fields.Boolean(compute="_compute_request_type")
-
-    @api.depends("request_type")
-    def _compute_request_type(self):
-        for obj in self:
-            if obj.request_type:
-                obj.reduce_step = obj.request_type.reduce_step
-            else:
-                obj.reduce_step = False
 
     @api.onchange("request_type")
     def onchange_request_type(self):

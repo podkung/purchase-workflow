@@ -22,7 +22,7 @@ class TestPurchaseRequestType(common.SavepointCase):
         cls.product3 = cls.env.ref("product.product_product_11")
         # Purchase Request Type
         cls.type1 = cls.env.ref("purchase_request_type.pr_type_regular")
-        cls.type2 = cls.env.ref("purchase_request_type.pr_type_reduce_step")
+        cls.type2 = cls.env.ref("purchase_request_type.pr_type_contract")
         # Picking Type
         cls.picking_type = cls.env.ref("stock.picking_type_in")
         cls.type2.picking_type_id = cls.picking_type
@@ -64,12 +64,6 @@ class TestPurchaseRequestType(common.SavepointCase):
         self.assertEqual(request.request_type, self.type1)
         request._onchange_company()
         self.assertFalse(request.request_type)
-
-    def test_compute_purchase_request_type(self):
-        request1 = self.pr_obj.new({"request_type": self.type1.id})
-        request2 = self.pr_obj.new({"request_type": self.type2.id})
-        self.assertFalse(request1.reduce_step)
-        self.assertEqual(request2.reduce_step, self.type2.reduce_step)
 
     def test_purchase_request_type_company_error(self):
         request = self.pr_obj.create({"picking_type_id": self.picking_type.id})

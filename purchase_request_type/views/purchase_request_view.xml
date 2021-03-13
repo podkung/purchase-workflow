@@ -4,16 +4,7 @@
         <field name="model">purchase.request</field>
         <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
         <field name="arch" type="xml">
-            <button
-                name="%(purchase_request.action_purchase_request_line_make_purchase_order)d"
-                position="attributes"
-            >
-                <attribute
-                    name="attrs"
-                >{'invisible': ['|',('reduce_step', '=', True)]}</attribute>
-            </button>
             <field name="requested_by" position="before">
-                <field name="reduce_step" invisible="1" />
                 <field
                     name="request_type"
                     required="True"

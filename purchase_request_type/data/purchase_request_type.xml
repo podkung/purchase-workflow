@@ -7,8 +7,4 @@
     <record model="purchase.request.type" id="pr_type_contract">
         <field name="name">Contract</field>
     </record>
-    <record model="purchase.request.type" id="pr_type_reduce_step">
-        <field name="name">Reduce Step</field>
-        <field name="reduce_step">1</field>
-    </record>
 </odoo>

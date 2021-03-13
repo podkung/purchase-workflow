@@ -42,4 +42,3 @@ class PurchaseRequestType(models.Model):
         string="Company",
         default=lambda self: self.env.company,
     )
-    reduce_step = fields.Boolean(string="Reduce Step", default=False)
